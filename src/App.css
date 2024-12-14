@@ -48,7 +48,7 @@
 
 /* Form Container */
 .formStyle {
-  background-color: #fff;
+  background-color: gray;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
@@ -60,7 +60,7 @@
 
 .formStyle h3 {
   margin-bottom: 20px;
-  color: #007bff; /* Accent blue color */
+  color: ffff; /* Accent blue color */
   font-size: 1.5rem;
 }
 
