@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router";
-import SignUp from "./components/Signup";
-import SignIn from "./components/Signin";
-import TaskManager from "./components/TaskManager";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import SignIn from "./components/SignIn"
+import SignUp from "./components/SignUp"
+import { useEffect, useState } from "react"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "./firebase"
+import TaskList from "./components/TaskList"
 
-const App = () => {
-  const [user, setUser] = useState(null);
+
+function App() {
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
+      setUser(user)
+    })
 
     return unsubscribe;
-  }, []);
+  }, [])
 
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route
-            path="/"
-            element={user ? <TaskManager user={user} /> : <SignIn />}
-          />
+          <Route path="/" element={<SignIn />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/tasklist" element={user ? <TaskList /> : <SignIn />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App
